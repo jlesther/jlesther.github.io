@@ -1,0 +1,220 @@
+{
+  "openapi": "3.0.4",
+  "info": {
+    "title": "Address Matching API",
+    "description": "Validates addresses using Exact Match and Jaro-Winkler similarity",
+    "version": "v1"
+  },
+  "paths": {
+    "/api/Address/match-address": {
+      "post": {
+        "tags": [
+          "Address"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddressInput"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddressInput"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddressInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddressMatchResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddressMatchResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddressMatchResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AddressInput": {
+        "type": "object",
+        "properties": {
+          "custAddress1": {
+            "type": "string",
+            "nullable": true
+          },
+          "custAddress2": {
+            "type": "string",
+            "nullable": true
+          },
+          "custCity": {
+            "type": "string",
+            "nullable": true
+          },
+          "custState": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AddressMatchResponse": {
+        "type": "object",
+        "properties": {
+          "matchType": {
+            "$ref": "#/components/schemas/AddressMatchType"
+          },
+          "score": {
+            "type": "number",
+            "format": "double"
+          },
+          "matchedAddress": {
+            "$ref": "#/components/schemas/CustomerAddress"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AddressMatchType": {
+        "enum": [
+          0,
+          1,
+          2
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "CustomerAddress": {
+        "type": "object",
+        "properties": {
+          "extrnL_CLIENT_ID": {
+            "maxLength": 50,
+            "type": "string",
+            "nullable": true
+          },
+          "cusT_PROF_DESIG": {
+            "maxLength": 50,
+            "type": "string",
+            "nullable": true
+          },
+          "cusT_SPECIALTY": {
+            "maxLength": 100,
+            "type": "string",
+            "nullable": true
+          },
+          "cusT_FIRST_NAME": {
+            "maxLength": 100,
+            "type": "string",
+            "nullable": true
+          },
+          "cusT_LAST_NAME": {
+            "maxLength": 100,
+            "type": "string",
+            "nullable": true
+          },
+          "extrnL_CLIENT_LOCID": {
+            "maxLength": 50,
+            "type": "string",
+            "nullable": true
+          },
+          "cusT_INACTIVE_ADDR": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "cusT_ADDRESS1": {
+            "maxLength": 300,
+            "type": "string",
+            "nullable": true
+          },
+          "cusT_ADDRESS2": {
+            "maxLength": 300,
+            "type": "string",
+            "nullable": true
+          },
+          "cusT_CITY": {
+            "maxLength": 150,
+            "type": "string",
+            "nullable": true
+          },
+          "cusT_STATE": {
+            "maxLength": 50,
+            "type": "string",
+            "nullable": true
+          },
+          "addR_DIGITAL_ID": {
+            "maxLength": 50,
+            "type": "string",
+            "nullable": true
+          },
+          "addR_SAMPLEABLE_FLAG": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "verifieD_DATE": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "statE_CS_NONSAMPLE_ELIG_STATUS": {
+            "maxLength": 50,
+            "type": "string",
+            "nullable": true
+          },
+          "cS_ELIG_STATUS": {
+            "maxLength": 50,
+            "type": "string",
+            "nullable": true
+          },
+          "dea": {
+            "maxLength": 50,
+            "type": "string",
+            "nullable": true
+          },
+          "deA_SCHEDULE": {
+            "maxLength": 50,
+            "type": "string",
+            "nullable": true
+          },
+          "deA_STATUS": {
+            "maxLength": 50,
+            "type": "string",
+            "nullable": true
+          },
+          "deA_EXP_DATE": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Address"
+    }
+  ]
+}

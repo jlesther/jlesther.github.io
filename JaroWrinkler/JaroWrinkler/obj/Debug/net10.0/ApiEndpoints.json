@@ -1,0 +1,28 @@
+[
+  {
+    "ContainingType": "JaroWrinklerSimilarity.Controllers.AddressController",
+    "Method": "MatchAddress",
+    "RelativePath": "api/Address/match-address",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "input",
+        "Type": "JaroWrinklerSimilarity.Models.AddressInput",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "JaroWrinklerSimilarity.Models.Responses.AddressMatchResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  }
+]
